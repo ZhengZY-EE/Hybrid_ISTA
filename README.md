@@ -128,7 +128,7 @@ python main.py --task_type sc -g 0 [-t] \
     --scope ALISTA --exp_id 0 -W ./data/W.npy
 ```
 Explanation for the new options:
-* `-W`: pretrained weights for ALISTA models. Note that the weights changes when `--SNR` or `--con_num` changes. One can find some pretrained weights in `./data`.
+* `-W`: pretrained weight for ALISTA models. Note that the weight changes when `--SNR` or `--con_num` changes. One can find some pretrained weights in `./data`.
 
 We adopts the standard thresholding operator in ALISTA by default. One can modify `models/ALISTA.py` to utilize the thresholding operator with support selection to make options `-p` and `-maxp` valid.
 
@@ -185,7 +185,7 @@ python main.py --task_type sc -g 0 [-t] \
     --scope Hybrid_ELISTA --exp_id 0 --better_wait 5000
 ```
 
-Some sparse recovery models with postfix `ComplexNet` in `models` such as `models\Hybrid_ISTA_ada_fixT_ComplexNet.py` and `models\Hybrid_LISTA_cp_ComplexNet.py` adopts complicated networks including DenseNet, U-Net, Vision Transformer and fully-connected networks. One can refer to Appendix D.1.2 for more details.
+Some sparse recovery models with postfix `ComplexNet` in `models` such as `models\Hybrid_ISTA_ada_fixT_ComplexNet.py` and `models\Hybrid_LISTA_cp_ComplexNet.py` adopt complicated networks including DenseNet, U-Net, Vision Transformer and fully-connected networks. One can refer to Appendix D.1.2 for more details.
 
 Some sparse recovery models with postfix `FixNetFunc` in `models` is used to evaluate the performance when DNN function is fixed, e.g., the output of DNNs is fixed to zero. One can refer to Appendix C.2 and Appendix D.1.1 for more details.
 
@@ -242,7 +242,7 @@ python main.py --task_type cs -g 0 [-t] \
     -vf ./data/50_val_set.tfrecords -W ./data/W_cs50.npy
 ```
 
-Some compressive sensing models with postfix `ComplexNet` in `models` such as `models\Hybrid_ISTA_ada_fixT_cs_ComplexNet.py` and `models\Hybrid_LISTA_cp_ComplexNet_cs.py` adopts complicated networks. One can refer to Appendix D.2.2 for more details.
+Some compressive sensing models with postfix `ComplexNet` in `models` such as `models\Hybrid_ISTA_ada_fixT_cs_ComplexNet.py` and `models\Hybrid_LISTA_cp_ComplexNet_cs.py` adopt complicated networks. One can refer to Appendix D.2.2 for more details.
 
 Compressive sensing models `models\Hybrid_ISTA_ada_fixT_cs_ISTANet_Plus.py` and `models\Hybrid_LISTA_cp_cs_ISTANet_Plus.py` are utilized to compare with `models\ISTA_Net_Plus.py` using the same training strategy and datasets. One can refer to Section 6.2.2 for more details.
 
