@@ -1,11 +1,6 @@
-'''
-Description: Hybrid GLISTA
-Version: 1.0
-Autor: https://github.com/wukailun/GLISTA/blob/master/GLISTA_cp.py
-Date: 2021-11-15 14:18:40
-LastEditors: Ziyang Zheng
-LastEditTime: 2022-01-29 23:33:45
-'''
+"""
+Implementation of hybrid GLISTA.
+"""
 import numpy as np
 import tensorflow as tf
 import utils.train
@@ -14,13 +9,12 @@ from utils.tf import shrink_free
 from models.LISTA_base import LISTA_base
 
 
-### This in the main coding of the GLISTA with couple parameters
 class Hybrid_GLISTA (LISTA_base):
     
     """
-    Implementation of hybrid ELISTA.
+    Implementation of hybrid GLISTA.
     """
-    def __init__(self, A, T, lam, untied, coord, scope, alti, overshoot, gain_fun, over_fun, both_gate, T_combine, T_middle, conv_num=3, kernel_size=3, feature_map=16, alpha_initial=0.0):
+    def __init__(self, A, T, lam, untied, coord, scope, alti, overshoot, gain_fun, over_fun, both_gate, T_combine, T_middle, conv_num=3, kernel_size=9, feature_map=16, alpha_initial=0.0):
         """
         :prob:     : Instance of Problem class, describing problem settings.
         :T         : Number of layers (depth) of this LISTA model.

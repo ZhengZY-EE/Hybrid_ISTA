@@ -294,7 +294,7 @@ parser.add_argument(
     help="Decide whether W1 and W2 are same in hybrid algorithms. 'S' means W1=W2, otherwise 'D'. Only works in untied model.")
 parser.add_argument(
     "-cvn", "--conv_num", type=int, default=3,
-    help="Suppose the free-form DNNs are fully conv networks. The number of conv layers.")
+    help="The number of conv layers.")
 parser.add_argument(
     "-ks", "--kernel_size", type=int, default=9,
     help="kernel size of conv layers.")
@@ -333,7 +333,7 @@ parser.add_argument(
     help="The flag layer for only adopting gain_fun or over_fun.")
 parser.add_argument(
     "-CN_mode", "--CN_mode", type=str, default="DesNet",
-    help="Name of complex network, including 'DesNet', 'UNet', 'Various'.")
+    help="Name of complex network, including 'DesNet', 'UNet', 'Transformer', 'Various'.")
 parser.add_argument(
     "-BN_flag", "--BN_flag", type=bool, default=True,
     help="Setting in ComplexNet for BN and Dropout.")

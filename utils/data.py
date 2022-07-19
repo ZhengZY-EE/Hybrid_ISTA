@@ -250,11 +250,11 @@ parser = argparse.ArgumentParser()
 parser.add_argument(
     "--task_type", type=str, default='cs', help="Denoise `denoise` or compressive sensing `cs`.")
 parser.add_argument(
-    "--dataset_dir", type=str, default='/home/zzy/Flicker_data/train', help="Path to the directory that holds images.")
+    "--dataset_dir", type=str, default=None, help="Path to the directory that holds images.")
 parser.add_argument(
     "--out_dir", type=str, default='./data', help="Path to the output directory that holds the TFRecords file.")
 parser.add_argument(
-    "--out_file", type=str, default='04_train_set_complex_plus', help="File name of the output file.")
+    "--out_file", type=str, default='04_train_set', help="File name of the output file.")
 parser.add_argument(
     "--suffix", type=str, default='png', help="Format of input images. PNG or JPG or other format.")
 # Arguments for compressive sensing

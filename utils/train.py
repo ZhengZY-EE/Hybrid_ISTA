@@ -393,12 +393,12 @@ def setup_cs_training (model, y_, f_, y_val_, f_val_, x0_,
         # training
         l2_   = tf.nn.l2_loss (fhs_ [t+1] - f_)
         l1_   = tf.reduce_sum (tf.abs (xhs_ [t+1]))
-        loss_ = l2_ + lasso_lam * l1_
+        loss_ = l2_ + 0.0 * l1_
         nmse_ = l2_ / nmse_denom_
         # validation
         l2_val_   = tf.nn.l2_loss (fhs_val_ [t+1] - f_val_)
         l1_val_   = tf.reduce_sum (tf.abs (xhs_val_ [t+1]))
-        loss_val_ = l2_val_ + lasso_lam * l1_val_
+        loss_val_ = l2_val_ + 0.0 * l1_val_
         nmse_val_ = l2_val_ / nmse_denom_val_
 
         var_list = []
@@ -487,14 +487,14 @@ def setup_cs_training_ISTANet_Plus (model, y_, f_, y_val_, f_val_, x0_,
         l2_   = tf.nn.l2_loss (fhs_ [t+1] - f_)
         l1_   = tf.reduce_sum (tf.abs (xhs_ [t+1]))
         resi_ = tf.reduce_mean(tf.square(resi_error_[t]))
-        loss_ = l2_ + lasso_lam * l1_ + 0.01 * resi_
+        loss_ = l2_ + 0.0 * l1_ + 0.01 * resi_
         # loss_ = l2_ + lasso_lam * l1_ 
         nmse_ = l2_ / nmse_denom_
         # validation
         l2_val_   = tf.nn.l2_loss (fhs_val_ [t+1] - f_val_)
         l1_val_   = tf.reduce_sum (tf.abs (xhs_val_ [t+1]))
         resi_val_ = tf.reduce_mean(tf.square(resi_error_val_[t]))
-        loss_val_ = l2_val_ + lasso_lam * l1_val_ + 0.01 * resi_val_
+        loss_val_ = l2_val_ + 0.0 * l1_val_ + 0.01 * resi_val_
         # loss_val_ = l2_val_ + lasso_lam * l1_val_ 
         nmse_val_ = l2_val_ / nmse_denom_val_
 

@@ -18,18 +18,7 @@ class Hybrid_ISTA_ada_fixT_FixNetFunc (LISTA_base):
     Implementation of Hybrid classical ISTA .
     """
     def __init__ (self, A, T, lam, untied, coord, scope, mode='S', alpha_initial=0.0, Net_Func='0'):
-        """
-        :prob:  : Instance of Problem class, describing problem settings.
-        :T      : Number of layers (depth) of this Hybrid LISTA model.
-        :lam    : Initial value of thresholds of shrinkage functions.
-        :untied : Whether weights are shared within layers.
-                  If tied, W1, W2 in all iteration are shared and DNNs between different iterations are the same. Parameters: [DNNs, W]
-                  If untied, please refer to option 'mode'.
-        :mode   : Decide whether two weights are shared. Theta1, Theta2 and Alpha are always not shared.
-                  'D': Different. No parameters are shared. Parameters: [DNNs, W1, W2] * T
-                  'S': Same. W1 and W2 in one iteration are the same. Parameters: [DNNs, W] * T
-        In this model, only untied and tied with 'S' are executable.
-        """
+        
         self._A   = A.astype (np.float32)
         self._T   = T
         self._lam = lam         # this lam is euqal to config.llam, not config.lam

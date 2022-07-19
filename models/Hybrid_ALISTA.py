@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+"""
+Implementation of Hybrid ALISTA.
+"""
 
 import numpy as np
 import tensorflow as tf
@@ -12,7 +15,7 @@ from models.LISTA_base import LISTA_base
 class Hybrid_ALISTA(LISTA_base):
 
     """
-    Implementation of deep neural network model.
+    Implementation of Hybrid ALISTA.
     """
 
     def __init__(self, A, T, lam, W, percent, max_percent, untied, coord, scope, 

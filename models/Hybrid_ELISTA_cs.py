@@ -4,7 +4,7 @@ Version: 1.0
 Autor: Ziyang Zheng
 Date: 2021-11-22 15:25:42
 LastEditors: Ziyang Zheng
-LastEditTime: 2022-01-28 02:29:53
+LastEditTime: 2022-07-20 00:10:35
 '''
 import numpy as np
 import tensorflow as tf
@@ -19,13 +19,7 @@ class Hybrid_ELISTA_cs (LISTA_base):
     Implementation of hybrid ELISTA_cs.
     """
     def __init__ (self, Phi, D, T, lam, untied, coord, scope, mt_flag, conv_num=3, kernel_size=3, feature_map=16, alpha_initial=0.0):
-        """
-        :prob:  : Instance of Problem class, describing problem settings.
-        :T      : Number of layers (depth) of this LISTA model.
-        :lam    : Initial value of thresholds of MT.
-        :lam_bar: Initial value of thresholds_bar of MT.
-        :untied : Whether weights are shared within layers.
-        """
+
         self._Phi  = Phi.astype (np.float32)
         self._D    = D.astype (np.float32)
         self._A    = np.matmul (self._Phi, self._D)

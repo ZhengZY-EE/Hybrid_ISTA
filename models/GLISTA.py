@@ -1,11 +1,4 @@
-'''
-Description: Gated LISTA
-Version: 1.0
-Autor: https://github.com/wukailun/GLISTA/blob/master/GLISTA_cp.py
-Date: 2021-11-15 14:18:40
-LastEditors: Ziyang Zheng
-LastEditTime: 2021-11-15 22:30:55
-'''
+
 import numpy as np
 import tensorflow as tf
 import utils.train
@@ -19,12 +12,18 @@ class GLISTA (LISTA_base):
     
     """
     Implementation of GLISTA.
-    Old Version:
-    1) Always set theta as a vector.
+
+    Old Version in https://github.com/wukailun/GLISTA/blob/master/GLISTA_cp.py:
+    1) Always set theta as a vector. 
     2) Always utilize shrink_ss.
     3) v_t in gain functions is set to a vector, which is not consistant with the paper.
     4) The sigmoid-based function for overshoot gate is not consistant with Eq.(18) in the paper.
-    5) The overshoot gate is wrong in the line 233.
+
+    We rewrite the aforementioned codes to make them consistant with the ICLR 2020 paper.
+    1) Set theta as a scalar if not "coord" (default).
+    2)  Always utilize shrink_free.
+    3) v_t in gain functions is set to a scalar.
+    4) We rewrite the sigmoid-based function for overshoot gate to make it consistant with Eq.(18) in the paper.
     """
     def __init__(self, A, T, lam, untied, coord, scope, alti, overshoot, gain_fun, over_fun, both_gate, T_combine, T_middle):
         """
@@ -51,8 +50,8 @@ class GLISTA (LISTA_base):
         self._theta = (self._lam / self._scale).astype(np.float32)
         self._alti = alti
         
-        # (Old Version) We set theta as a vector forever 
-        # For fair comparison, we set 'theta' as a scalar when 'no_coord'.
+        # (Old Version) Always set theta as a vector 
+        # For fair comparison, we set 'theta' as a scalar when 'no_coord' (default).
         # self._theta = np.ones((self._N, 1), dtype=np.float32) * self._theta
         
         self._logep = -2.0
@@ -121,7 +120,7 @@ class GLISTA (LISTA_base):
         W_g = np.eye(self._N, dtype=np.float32) - np.matmul(B, self._A)  # I - A^T * A
         b_g = np.zeros((self._N,1),dtype=np.float32)
         
-        # (Old Version) D is equal to v_t in gain functions, and is set to a vector
+        # (Old Version) D is equal to v_t in gain functions, and is set to a vector.
         # To be consistant with paper, we change it as a scalar.
         # D = np.ones((self._N,1),dtype=np.float32)
         D = 1.0

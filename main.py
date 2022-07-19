@@ -304,28 +304,15 @@ def setup_model(config , **kwargs) :
         model = ISTA_Net_Plus (kwargs['Phi'], T=config.T, untied=config.untied, 
                           scope=config.scope, conv_num=config.conv_num, 
                           kernel_size=config.kernel_size, feature_map=config.feature_map)                  
-    
-    if config.net == 'Hybrid_ISTA_fixT' :
-        """Hybrid_ISTA_fixT"""
-        config.model = ("Hybrid_ISTA_fixT_T{T}_lam{lam}_{untiedf}_{coordf}_W{w_mode}_{exp_id}"
-                        .format (T=config.T, lam=config.lam, untiedf=untiedf,
-                                 coordf=coordf, w_mode=config.w_mode, exp_id=config.exp_id))
-        from models.Hybrid_ISTA_fixT import Hybrid_ISTA_fixT
-        # in this model, lam = config.llam != config.lam
-        model = Hybrid_ISTA_fixT (kwargs['A'], T=config.T, lam=config.lam,
-                          untied=config.untied, coord=config.coord,
-                          scope=config.scope, mode=config.w_mode, conv_num=config.conv_num, 
-                          kernel_size=config.kernel_size, feature_map=config.feature_map, 
-                          alpha_initial=config.alpha_init)
 
     if config.net == 'Hybrid_ISTA_ada_fixT' :
         """Hybrid_ISTA_ada_fixT"""
         config.model = ("Hybrid_ISTA_ada_fixT_T{T}_lam{lam}_{untiedf}_{coordf}_W{w_mode}_{exp_id}"
-                        .format (T=config.T, lam=config.lam, untiedf=untiedf,
+                        .format (T=config.T, lam=config.lasso_lam, untiedf=untiedf,
                                  coordf=coordf, w_mode=config.w_mode, exp_id=config.exp_id))
         from models.Hybrid_ISTA_ada_fixT import Hybrid_ISTA_ada_fixT
         # in this model, lam = config.llam != config.lam
-        model = Hybrid_ISTA_ada_fixT (kwargs['A'], T=config.T, lam=config.lam,
+        model = Hybrid_ISTA_ada_fixT (kwargs['A'], T=config.T, lam=config.lasso_lam,
                           untied=config.untied, coord=config.coord,
                           scope=config.scope, mode=config.w_mode, conv_num=config.conv_num, 
                           kernel_size=config.kernel_size, feature_map=config.feature_map, 
@@ -334,11 +321,11 @@ def setup_model(config , **kwargs) :
     if config.net == 'Hybrid_ISTA_ada_fixT_assump1' :
         """Hybrid_ISTA_ada_fixT_assump1"""
         config.model = ("Hybrid_ISTA_ada_fixT_assump1_T{T}_lam{lam}_{untiedf}_{coordf}_W{w_mode}_{exp_id}"
-                        .format (T=config.T, lam=config.lam, untiedf=untiedf,
+                        .format (T=config.T, lam=config.lasso_lam, untiedf=untiedf,
                                  coordf=coordf, w_mode=config.w_mode, exp_id=config.exp_id))
         from models.Hybrid_ISTA_ada_fixT_assump1 import Hybrid_ISTA_ada_fixT_assump1
         # in this model, lam = config.llam != config.lam
-        model = Hybrid_ISTA_ada_fixT_assump1 (kwargs['A'], T=config.T, lam=config.lam,
+        model = Hybrid_ISTA_ada_fixT_assump1 (kwargs['A'], T=config.T, lam=config.lasso_lam,
                           untied=config.untied, coord=config.coord,
                           scope=config.scope, mode=config.w_mode, conv_num=config.conv_num, 
                           kernel_size=config.kernel_size, feature_map=config.feature_map, 
@@ -347,12 +334,12 @@ def setup_model(config , **kwargs) :
     if config.net == 'Hybrid_ISTA_ada_fixT_ComplexNet' :
         """Hybrid_ISTA_ada_fixT_ComplexNet"""
         config.model = ("Hybrid_ISTA_ada_fixT_ComplexNet_T{T}_lam{lam}_{untiedf}_{coordf}_W{w_mode}_CN{cn_mode}_BNDrop{BN_flag}_{exp_id}"
-                        .format (T=config.T, lam=config.lam, untiedf=untiedf,
+                        .format (T=config.T, lam=config.lasso_lam, untiedf=untiedf,
                                  coordf=coordf, w_mode=config.w_mode, cn_mode=config.CN_mode, 
                                  BN_flag=config.BN_flag, exp_id=config.exp_id))
         from models.Hybrid_ISTA_ada_fixT_ComplexNet import Hybrid_ISTA_ada_fixT_ComplexNet
         # in this model, lam = config.llam != config.lam
-        model = Hybrid_ISTA_ada_fixT_ComplexNet (kwargs['A'], T=config.T, lam=config.lam,
+        model = Hybrid_ISTA_ada_fixT_ComplexNet (kwargs['A'], T=config.T, lam=config.lasso_lam,
                           untied=config.untied, coord=config.coord,
                           scope=config.scope, mode=config.w_mode, CN_mode=config.CN_mode, 
                           BN_flag=config.BN_flag,
@@ -361,36 +348,11 @@ def setup_model(config , **kwargs) :
     if config.net == 'Hybrid_ISTA_ada_fixT_FixNetFunc' :
         """Hybrid_ISTA_ada_fixT_FixNetFunc"""
         config.model = ("Hybrid_ISTA_ada_fixT_FixNetFunc{NetFunc}_T{T}_lam{lam}_{untiedf}_{coordf}_W{w_mode}_{exp_id}"
-                        .format (NetFunc=config.net_func, T=config.T, lam=config.lam, untiedf=untiedf,
+                        .format (NetFunc=config.net_func, T=config.T, lam=config.lasso_lam, untiedf=untiedf,
                                  coordf=coordf, w_mode=config.w_mode, exp_id=config.exp_id))
         from models.Hybrid_ISTA_ada_fixT_FixNetFunc import Hybrid_ISTA_ada_fixT_FixNetFunc
         # in this model, lam = config.llam != config.lam
-        model = Hybrid_ISTA_ada_fixT_FixNetFunc (kwargs['A'], T=config.T, lam=config.lam,
-                          untied=config.untied, coord=config.coord,
-                          scope=config.scope, mode=config.w_mode, 
-                          alpha_initial=config.alpha_init, Net_Func=config.net_func)
-    
-    if config.net == 'Hybrid_ISTA_freeT' :
-        """Hybrid_ISTA_freeT"""
-        config.model = ("Hybrid_ISTA_freeT_T{T}_lam{lam}_{untiedf}_{coordf}_W{w_mode}_{exp_id}"
-                        .format (T=config.T, lam=config.lam, untiedf=untiedf,
-                                 coordf=coordf, w_mode=config.w_mode, exp_id=config.exp_id))
-        from models.Hybrid_ISTA_freeT import Hybrid_ISTA_freeT
-        # in this model, lam = config.llam != config.lam
-        model = Hybrid_ISTA_freeT (kwargs['A'], T=config.T, lam=config.lam,
-                          untied=config.untied, coord=config.coord,
-                          scope=config.scope, mode=config.w_mode, conv_num=config.conv_num, 
-                          kernel_size=config.kernel_size, feature_map=config.feature_map, 
-                          alpha_initial=config.alpha_init)
-
-    if config.net == 'Hybrid_ISTA_ada_freeT_FixNetFunc' :
-        """Hybrid_ISTA_ada_freeT_FixNetFunc"""
-        config.model = ("Hybrid_ISTA_ada_freeT_FixNetFunc{NetFunc}_T{T}_lam{lam}_{untiedf}_{coordf}_W{w_mode}_{exp_id}"
-                        .format (NetFunc=config.net_func, T=config.T, lam=config.lam, untiedf=untiedf,
-                                 coordf=coordf, w_mode=config.w_mode, exp_id=config.exp_id))
-        from models.Hybrid_ISTA_ada_freeT_FixNetFunc import Hybrid_ISTA_ada_freeT_FixNetFunc
-        # in this model, lam = config.llam != config.lam
-        model = Hybrid_ISTA_ada_freeT_FixNetFunc (kwargs['A'], T=config.T, lam=config.lam,
+        model = Hybrid_ISTA_ada_fixT_FixNetFunc (kwargs['A'], T=config.T, lam=config.lasso_lam,
                           untied=config.untied, coord=config.coord,
                           scope=config.scope, mode=config.w_mode, 
                           alpha_initial=config.alpha_init, Net_Func=config.net_func)
@@ -398,11 +360,11 @@ def setup_model(config , **kwargs) :
     if config.net == 'Hybrid_ISTA_ada_freeT' :
         """Hybrid_ISTA_ada_freeT"""
         config.model = ("Hybrid_ISTA_ada_freeT_T{T}_lam{lam}_{untiedf}_{coordf}_W{w_mode}_{exp_id}"
-                        .format (T=config.T, lam=config.lam, untiedf=untiedf,
+                        .format (T=config.T, lam=config.lasso_lam, untiedf=untiedf,
                                  coordf=coordf, w_mode=config.w_mode, exp_id=config.exp_id))
         from models.Hybrid_ISTA_ada_freeT import Hybrid_ISTA_ada_freeT
         # in this model, lam = config.llam != config.lam
-        model = Hybrid_ISTA_ada_freeT (kwargs['A'], T=config.T, lam=config.lam,
+        model = Hybrid_ISTA_ada_freeT (kwargs['A'], T=config.T, lam=config.lasso_lam,
                           untied=config.untied, coord=config.coord,
                           scope=config.scope, mode=config.w_mode, conv_num=config.conv_num, 
                           kernel_size=config.kernel_size, feature_map=config.feature_map, 
@@ -410,11 +372,11 @@ def setup_model(config , **kwargs) :
 
     if config.net == 'Hybrid_ISTA_ada_fixT_cs' :
         """Hybrid_ISTA_ada_fixT_cs"""
-        config.model = ("Hybrid_ISTA_ada_fixT_cs_T{T}_lam{lam}_llam{llam}_{untiedf}_{coordf}_W{w_mode}_{exp_id}"
-                        .format (T=config.T, lam=config.lam, untiedf=untiedf, llam=config.lasso_lam,
+        config.model = ("Hybrid_ISTA_ada_fixT_cs_T{T}_lam{lam}_{untiedf}_{coordf}_W{w_mode}_{exp_id}"
+                        .format (T=config.T, lam=config.lasso_lam, untiedf=untiedf, 
                                  coordf=coordf, w_mode=config.w_mode, exp_id=config.exp_id))
         from models.Hybrid_ISTA_ada_fixT_cs import Hybrid_ISTA_ada_fixT_cs
-        model = Hybrid_ISTA_ada_fixT_cs (kwargs['Phi'], kwargs['D'], T=config.T, lam=config.lam,
+        model = Hybrid_ISTA_ada_fixT_cs (kwargs['Phi'], kwargs['D'], T=config.T, lam=config.lasso_lam,
                           untied=config.untied, coord=config.coord,
                           scope=config.scope, mode=config.w_mode, conv_num=config.conv_num, 
                           kernel_size=config.kernel_size, feature_map=config.feature_map, 
@@ -422,13 +384,13 @@ def setup_model(config , **kwargs) :
         
     if config.net == 'Hybrid_ISTA_ada_fixT_cs_ComplexNet' :
         """Hybrid_ISTA_ada_fixT_cs_ComplexNet"""
-        config.model = ("Hybrid_ISTA_ada_fixT_cs_ComplexNet_T{T}_lam{lam}_llam{llam}_{untiedf}_{coordf}_W{w_mode}_CN{cn_mode}_BNDrop{BN_flag}_{exp_id}"
-                        .format (T=config.T, lam=config.lam, untiedf=untiedf, llam=config.lasso_lam,
+        config.model = ("Hybrid_ISTA_ada_fixT_cs_ComplexNet_T{T}_lam{lam}_{untiedf}_{coordf}_W{w_mode}_CN{cn_mode}_BNDrop{BN_flag}_{exp_id}"
+                        .format (T=config.T, lam=config.lasso_lam, untiedf=untiedf, 
                                  coordf=coordf, w_mode=config.w_mode, cn_mode=config.CN_mode, 
                                  BN_flag=config.BN_flag, exp_id=config.exp_id))
         from models.Hybrid_ISTA_ada_fixT_cs_ComplexNet import Hybrid_ISTA_ada_fixT_cs_ComplexNet
         model = Hybrid_ISTA_ada_fixT_cs_ComplexNet (kwargs['Phi'], kwargs['D'], T=config.T, 
-                                                    lam=config.lam,
+                                                    lam=config.lasso_lam,
                           untied=config.untied, coord=config.coord,
                           scope=config.scope, mode=config.w_mode, CN_mode=config.CN_mode, 
                                  BN_flag=config.BN_flag, 
@@ -436,11 +398,11 @@ def setup_model(config , **kwargs) :
 
     if config.net == 'Hybrid_ISTA_ada_fixT_cs_ISTANet_Plus' :
         """Hybrid_ISTA_ada_fixT_cs_ISTANet_Plus"""
-        config.model = ("Hybrid_ISTA_ada_fixT_cs_ISTANet_Plus_T{T}_lam{lam}_llam{llam}_{untiedf}_{coordf}_W{w_mode}_{exp_id}"
-                        .format (T=config.T, lam=config.lam, untiedf=untiedf, llam=config.lasso_lam,
+        config.model = ("Hybrid_ISTA_ada_fixT_cs_ISTANet_Plus_T{T}_lam{lam}_{untiedf}_{coordf}_W{w_mode}_{exp_id}"
+                        .format (T=config.T, lam=config.lasso_lam, untiedf=untiedf, 
                                  coordf=coordf, w_mode=config.w_mode, exp_id=config.exp_id))
         from models.Hybrid_ISTA_ada_fixT_cs_ISTANet_Plus import Hybrid_ISTA_ada_fixT_cs_ISTANet_Plus
-        model = Hybrid_ISTA_ada_fixT_cs_ISTANet_Plus (kwargs['Phi'], kwargs['D'], T=config.T, lam=config.lam,
+        model = Hybrid_ISTA_ada_fixT_cs_ISTANet_Plus (kwargs['Phi'], kwargs['D'], T=config.T, lam=config.lasso_lam,
                           untied=config.untied, coord=config.coord,
                           scope=config.scope, mode=config.w_mode, conv_num=config.conv_num, 
                           kernel_size=config.kernel_size, feature_map=config.feature_map, 
@@ -448,11 +410,11 @@ def setup_model(config , **kwargs) :
 
     if config.net == 'Hybrid_ISTA_ada_freeT_cs' :
        """Hybrid_ISTA_ada_freeT_cs"""
-       config.model = ("Hybrid_ISTA_ada_freeT_cs_T{T}_lam{lam}_llam{llam}_{untiedf}_{coordf}_W{w_mode}_{exp_id}"
-                       .format (T=config.T, lam=config.lam, untiedf=untiedf, llam=config.lasso_lam,
+       config.model = ("Hybrid_ISTA_ada_freeT_cs_T{T}_lam{lam}_{untiedf}_{coordf}_W{w_mode}_{exp_id}"
+                       .format (T=config.T, lam=config.lasso_lam, untiedf=untiedf, 
                                 coordf=coordf, w_mode=config.w_mode, exp_id=config.exp_id))
        from models.Hybrid_ISTA_ada_freeT_cs import Hybrid_ISTA_ada_freeT_cs
-       model = Hybrid_ISTA_ada_freeT_cs (kwargs['Phi'], kwargs['D'], T=config.T, lam=config.lam,
+       model = Hybrid_ISTA_ada_freeT_cs (kwargs['Phi'], kwargs['D'], T=config.T, lam=config.lasso_lam,
                          untied=config.untied, coord=config.coord,
                          scope=config.scope, mode=config.w_mode, conv_num=config.conv_num, 
                          kernel_size=config.kernel_size, feature_map=config.feature_map, 
@@ -1256,20 +1218,14 @@ def run_sc_test (config) :
 
     if config.model[0] == 'H':
         print(config.model)
-        if config.model[7:20] == 'ISTA_ada_fixT' or config.model[7:16] == 'ISTA_fixT':
+        if 'ISTA_ada_fixT' in config.model:
             theta_list = model.thetas_     
             delta_list = model.delta_total_
             alpha_list = model.alpha_list
             eta_list = model.eta_list
             lam_f_list = model.lam_f_list
-	    
-            # vh_list = model.vh_list
-            # wh_list = model.wh_list
-            
-            # lam1_list = model.lams1_
-            # lam2_list = model.lams2_
 
-        elif config.model[7:21] == 'ISTA_ada_freeT' or config.model[7:17] == 'ISTA_freeT':
+        elif 'ISTA_ada_freeT' in config.model:
             theta_list = model.thetas_     
             eta_list = model.eta_list
             lam_f_list = model.lams_
@@ -1283,12 +1239,6 @@ def run_sc_test (config) :
         elif 'ELISTA' in config.model:
             alpha_list = model._alpha
             u_list = model.uhs_
-            
-        # else:
-        #     theta1_list = model.thetas1_ 
-        #     theta2_list = model.thetas2_
-        #     alpha_list = model.alphas_raw
-        #     u_list = model.uhs_
         
 
     """Create session and initialize the graph."""
@@ -1321,7 +1271,6 @@ def run_sc_test (config) :
             loss = np.sum (np.square (xh - xt))
             nmse_dB = 10.0 * np.log10 (loss / nmse_denom)
             print (nmse_dB)
-            write_txt('./HCISTA_UnT_600_0.05.txt', nmse_dB)
 
             lnmse.append (nmse_dB)
 
@@ -1351,9 +1300,8 @@ def run_sc_test (config) :
 
         if config.model[0] == 'H':
 
-            if config.model[7:20] == 'ISTA_ada_fixT' or config.model[7:16] == 'ISTA_fixT':
+            if 'ISTA_ada_fixT' in config.model:
                 lam_f_, eta_, del_, t_, al,  = sess.run ([lam_f_list, eta_list, delta_list, theta_list, alpha_list] , feed_dict={label_:xt})
-                # t1, t2, al, l1, l2 = sess.run ([theta1_list, theta2_list, alpha_list, lam1_list, lam2_list] , feed_dict={label_:xt})
                 Lam_ = [abs(l) for l in lam_f_]
                 Theta_ = [abs(t) for t in t_]
 
@@ -1361,12 +1309,8 @@ def run_sc_test (config) :
                 print('delta:', [0.25/(1+np.exp(-1*d))+0.25 for d in del_])
                 print('Alpha:', al)
                 print('eta:', eta_)
-                # print('Learned Lam1:', [abs(l) for l in l1])
-                # print('Learned Lam2:', [abs(l) for l in l2])
-                # print(vh_)
-                # print(wh_)
             
-            elif config.model[7:21] == 'ISTA_ada_freeT' or config.model[7:17] == 'ISTA_freeT':
+            elif 'ISTA_ada_freeT' in config.model:
                 lam_f_, eta_, t_, = sess.run ([lam_f_list, eta_list, theta_list] , feed_dict={label_:xt})
                 
                 Lam_ = [abs(l) for l in lam_f_]
@@ -1556,9 +1500,6 @@ def run_cs_test (config) :
         fhs_, _ = model.inference (y_, None)
     else:
         _, fhs_ = model.inference (y_, None)
-    
-    # if config.model[0] == 'A':
-    #     learned_w = model._W
 
 
     """Start testing."""

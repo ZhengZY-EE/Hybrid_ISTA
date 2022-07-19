@@ -2,12 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-file  : LISTA_cpss.py
-author: Xiaohan Chen
-email : chernxh@tamu.edu
-date  : 2019-02-17
-
-Implementation of Learned ISTA with support selection and coupled weights.
+Implementation of Hybrid Learned ISTA with support selection and coupled weights.
 """
 
 import numpy as np
@@ -21,22 +16,12 @@ from models.LISTA_base import LISTA_base
 class Hybrid_LISTA_cpss (LISTA_base):
 
     """
-    Implementation of deep neural network model.
+    Implementation of Hybrid Learned ISTA with support selection and coupled weights.
     """
 
     def __init__(self, A, T, lam, percent, max_percent,
                  untied, coord, scope, mode='D', conv_num=3, kernel_size=9, feature_map=16, alpha_initial=0.0):
-        """
-        :prob:     : Instance of Problem class, describing problem settings.
-        :T         : Number of layers (depth) of this LISTA model.
-        :lam  : Initial value of thresholds of shrinkage functions.
-        :untied : Whether weights are shared within layers.
-                  If tied, W1, W2 in all iteration are shared and DNNs between different iterations are the same. Parameters: [DNNs, W]
-                  If untied, please refer to option 'mode'.
-        :mode   : Decide whether two weights are shared. Theta1, Theta2 and Alpha are always not shared.
-                  'D': Different. No parameters are shared. Parameters: [DNNs, W1, W2] * T
-                  'S': Same. W1 and W2 in one iteration are the same. Parameters: [DNNs, W] * T
-        """
+
         self._A    = A.astype (np.float32)
         self._T    = T
         self._p    = percent
@@ -128,18 +113,7 @@ class Hybrid_LISTA_cpss (LISTA_base):
 
 
     def setup_layers(self):
-        """
-        Implementation of Hybird LISTA model proposed by LeCun in 2010.
 
-        :prob: Problem setting.
-        :T: Number of layers in Hybird LISTA.
-        :returns:
-            :layers: List of tuples ( name, xh_, var_list )
-                :name: description of layers.
-                :xh: estimation of sparse code at current layer.
-                :var_list: list of variables to be trained seperately.
-
-        """
         Ws1_    = []
         Ws2_    = []
         thetas1_ = []

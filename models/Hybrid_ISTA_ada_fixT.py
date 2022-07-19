@@ -20,15 +20,14 @@ class Hybrid_ISTA_ada_fixT (LISTA_base):
     def __init__ (self, A, T, lam, untied, coord, scope, mode='S', conv_num=3, kernel_size=9, feature_map=16, alpha_initial=0.0):
         """
         :prob:  : Instance of Problem class, describing problem settings.
-        :T      : Number of layers (depth) of this Hybrid LISTA model.
-        :lam    : Initial value of thresholds of shrinkage functions.
-        :untied : Whether weights are shared within layers.
-                  If tied, W1, W2 in all iteration are shared and DNNs between different iterations are the same. Parameters: [DNNs, W]
-                  If untied, please refer to option 'mode'.
-        :mode   : Decide whether two weights are shared. Theta1, Theta2 and Alpha are always not shared.
-                  'D': Different. No parameters are shared. Parameters: [DNNs, W1, W2] * T
-                  'S': Same. W1 and W2 in one iteration are the same. Parameters: [DNNs, W] * T
-        In this model, only untied and tied with 'S' are executable.
+        :T      : Number of layers (depth) of this hybrid ISTA model.
+        :lam    : The weight of l1 norm term 'labmda' in LASSO.
+        :untied : Whether DNNs are shared within layers.
+                  If 'tied', DNNs in all iteration are shared. 
+                  If 'untied', DNNs are not shared.
+    
+        ***** In this model, only mode 'S' is executable. *****
+
         """
         self._A   = A.astype (np.float32)
         self._T   = T
@@ -132,7 +131,7 @@ class Hybrid_ISTA_ada_fixT (LISTA_base):
             self._upper = tf.constant (value=self.upper, dtype=tf.float32)
 
             if self._mode != 'S':
-                print('No such name of mode. In this model, only S is executable.')
+                print('In this model, only \'S\' is executable.')
                 raise ValueError
 
             for t in range (self._T):
@@ -154,12 +153,13 @@ class Hybrid_ISTA_ada_fixT (LISTA_base):
         self.delta_total_ = delta_total_
         self.lams_ = lams_
 
-    ###### This is for untrained experiment.
+    ###### This is for untrained experiment ######
     # def lam_range(self, lam_input, x_n, x_n_1, lam_old, C=1):
     #     Q = C * tf.norm(x_n-x_n_1)
     #     P = tf.cond(Q < lam_old, lambda: Q, lambda: lam_old)
     #     lam_final = tf.cond(P < self._lam, lambda: 0.99999 * P, lambda: self._lam)
     #     return lam_final
+    ##############################################
 
     def lam_range(self, lam_input, x_n, x_n_1, lam_old, C=1):
         Q = C * tf.norm(x_n-x_n_1)

@@ -17,17 +17,7 @@ class Hybrid_LISTA_cpss_cs (LISTA_base):
 
     def __init__(self, Phi, D, T, lam, percent, max_percent,
                  untied, coord, scope, mode='D', conv_num=3, kernel_size=3, feature_map=16, alpha_initial=0.0):
-        """
-        :prob:     : Instance of Problem class, describing problem settings.
-        :T         : Number of layers (depth) of this LISTA model.
-        :lam  : Initial value of thresholds of shrinkage functions.
-        :untied : Whether weights are shared within layers.
-                  If tied, W1, W2 in all iteration are shared and DNNs between different iterations are the same. Parameters: [DNNs, W]
-                  If untied, please refer to option 'mode'.
-        :mode   : Decide whether two weights are shared. Theta1, Theta2 and Alpha are always not shared.
-                  'D': Different. No parameters are shared. Parameters: [DNNs, W1, W2] * T
-                  'S': Same. W1 and W2 in one iteration are the same. Parameters: [DNNs, W] * T
-        """
+        
         self._Phi  = Phi.astype (np.float32)
         self._D    = D.astype (np.float32)
         self._A    = np.matmul (self._Phi, self._D)

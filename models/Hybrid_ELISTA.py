@@ -4,7 +4,7 @@ Version: 1.0
 Autor: Ziyang Zheng
 Date: 2021-11-22 15:25:42
 LastEditors: Ziyang Zheng
-LastEditTime: 2022-01-31 20:27:37
+LastEditTime: 2022-07-19 00:59:17
 '''
 import numpy as np
 import tensorflow as tf
@@ -23,7 +23,6 @@ class Hybrid_ELISTA (LISTA_base):
         :prob:  : Instance of Problem class, describing problem settings.
         :T      : Number of layers (depth) of this LISTA model.
         :lam    : Initial value of thresholds of MT.
-        :lam_bar: Initial value of thresholds_bar of MT.
         :untied : Whether weights are shared within layers.
         """
         self._A   = A.astype (np.float32)
@@ -112,18 +111,7 @@ class Hybrid_ELISTA (LISTA_base):
 
 
     def setup_layers(self):
-        """
-        Implementation of LISTA model proposed by LeCun in 2010.
-
-        :prob: Problem setting.
-        :T: Number of layers in LISTA.
-        :returns:
-            :layers: List of tuples ( name, xh_, var_list )
-                :name: description of layers.
-                :xh: estimation of sparse code at current layer.
-                :var_list: list of variables to be trained seperately.
-
-        """
+        
         Ws1_     = []
         Ws2_     = []
         alphas1_  = []

@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""
-Implementation of Hybrid Learned ISTA with weight coupling.
-"""
-
 import numpy as np
 import tensorflow as tf
 import utils.train
@@ -14,13 +10,7 @@ from models.LISTA_base import LISTA_base
 class ISTA_Net_Plus (LISTA_base):
 
     def __init__ (self, Phi, T, untied, scope, conv_num=6, kernel_size=3, feature_map=32):
-        """
-        :prob:  : Instance of Problem class, describing problem settings.
-        :T      : Number of layers (depth) of this Hybrid LISTA model.
-        :untied : Whether weights are shared within layers.
-                  If tied, W1, W2 in all iteration are shared and DNNs between different iterations are the same. Parameters: [DNNs, W]
-                  If untied, please refer to option 'mode'.
-        """
+
         self._Phi  = Phi.astype (np.float32)
         self._T    = T
         self._M    = self._Phi.shape [0]
