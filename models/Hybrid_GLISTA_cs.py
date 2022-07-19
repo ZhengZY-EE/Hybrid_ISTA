@@ -1,11 +1,3 @@
-'''
-Description: Hybrid GLISTA
-Version: 1.0
-Autor: https://github.com/wukailun/GLISTA/blob/master/GLISTA_cp.py
-Date: 2021-11-15 14:18:40
-LastEditors: Ziyang Zheng
-LastEditTime: 2022-01-28 02:29:42
-'''
 import numpy as np
 import tensorflow as tf
 import utils.train
