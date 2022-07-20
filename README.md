@@ -36,7 +36,7 @@ One can refer to the ALISTA repository (https://github.com/VITA-Group/ALISTA) fo
 
 One can train or test the models in Fig. 3, 8 and 9 in our paper (https://doi.org/10.1109/TPAMI.2022.3172214) using the following commands.
 
-To train or test a **HISTA-0.1** model, use the following command:
+To train or test a **HCISTA-0.1** model, use the following command:
 ```
 python main.py --task_type sc -g 0 [-t] \
     --M 250 --N 500 --pnz 0.1 --SNR inf --con_num 0 \
@@ -60,7 +60,7 @@ Explanation for the options (most options are same as ALISTA, and all options ar
 * `-T`: the number of layers.
 * `-llam/--lasso_lam`: the weight of l1 norm term \labmda in LASSO.
 * `-u/--untied`: whether the inserted DNNs are shared within layers. Use this option for constructing untied model. We adopt tied model (default) for hybrid ISTA models and untied baseline models in the paper.
-* `-wm/--w_mode`: works when adopting untied models. Only mode 'S' is executable in HISTA. See the counterpart in HLISTA models for more details.
+* `-wm/--w_mode`: works when adopting untied models. Only mode 'S' is executable in HCISTA. See the counterpart in HLISTA models for more details.
 * `-cvn/--conv_num`: the number of convolution layers of the inserted DNNs in each iteration. See Equation (58) for more details.
 * `-ks/--kernel_size`: kernel size of convolution layers. See Equation (58) for more details.
 * `-fm/--feature_map`: number of intermediate feature maps. See Equation (58) for more details.
@@ -68,7 +68,7 @@ Explanation for the options (most options are same as ALISTA, and all options ar
 * `--exp_id`: experiment id, used to differentiate experiments with the same setting.
 
 
-To train or test a **HISTA-F** model, use the following command:
+To train or test a **HCISTA-F** model, use the following command:
 ```
 python main.py --task_type sc -g 0 [-t] \
     --M 250 --N 500 --pnz 0.1 --SNR inf --con_num 0 \
