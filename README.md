@@ -250,10 +250,13 @@ Compressive sensing models `models\Hybrid_ISTA_ada_fixT_cs_ISTANet_Plus.py` and 
 If you find our code helpful in your research or work, please cite our paper.
 ```
 @article{zheng2022hybrid,
-title={Hybrid ISTA: Unfolding ISTA With Convergence Guarantees Using Free-Form Deep Neural Networks},
-author={Zheng, Ziyang and Dai, Wenrui and Xue, Duoduo and Li, Chenglin and Zou, Junni and Xiong, Hongkai},
-journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
-year={2022},
-publisher={IEEE}
+  title={Hybrid ISTA: Unfolding ISTA with convergence guarantees using free-form deep neural networks},
+  author={Zheng, Ziyang and Dai, Wenrui and Xue, Duoduo and Li, Chenglin and Zou, Junni and Xiong, Hongkai},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume={45},
+  number={3},
+  pages={3226--3244},
+  year={2022},
+  publisher={IEEE}
 }
 ```
